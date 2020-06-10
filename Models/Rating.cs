@@ -12,7 +12,16 @@ namespace TravelClient.Models
     public int PlaceId { get; set; }
     public int UserId { get; set; }
     public string Comments { get; set; }
- 
+    public static List<Rating> GetRatings()
+    {
+      var apiCallTask = ApiHelper.GetAll();
+      var result = apiCallTask.Result;
+
+      JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
+      List<Rating> RatingList = JsonConvert.DeserializeObject<List<Rating>>(jsonResponse.ToString());
+
+      return RatingList;
+    }
     public static Rating GetDetails(int id)
     {
       var apiCallTask = ApiHelper.Get(id);
