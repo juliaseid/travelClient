@@ -19,7 +19,7 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"places/{id}", Method.GET);
-      
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       var response = await client.ExecuteTaskAsync(request);
       return response.Content;
     }
@@ -29,6 +29,7 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"places", Method.POST);
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       request.AddHeader("Content-Type", "application/json");
       request.AddJsonBody(newPlace);
       var response = await client.ExecuteTaskAsync(request);
@@ -38,6 +39,7 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"places/{id}", Method.PUT);
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       request.AddHeader("Content-Type", "application/json");
       request.AddJsonBody(newPlace);
       var response = await client.ExecuteTaskAsync(request);
@@ -47,13 +49,15 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"places/{id}", Method.DELETE);
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       request.AddHeader("Content-Type", "application/json");
       var response = await client.ExecuteTaskAsync(request);
     }
-    public static async Task<string> GetAllRating()
+    public static async Task<string> GetAllRatings()
         {
           RestClient client = new RestClient("http://localhost:5004/api");
           RestRequest request = new RestRequest($"ratings", Method.GET);
+                request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
           var response = await client.ExecuteTaskAsync(request);
           return response.Content;
         }
@@ -79,6 +83,7 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"ratings/{id}", Method.PUT);
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       request.AddHeader("Content-Type", "application/json");
       request.AddJsonBody(newRating);
       var response = await client.ExecuteTaskAsync(request);
@@ -88,6 +93,7 @@ namespace TravelClient.Models
     {
       RestClient client = new RestClient("http://localhost:5004/api");
       RestRequest request = new RestRequest($"ratings/{id}", Method.DELETE);
+            request.AddParameter("Authorization", string.Format("Bearer "+ Token.UserToken), ParameterType.HttpHeader);
       request.AddHeader("Content-Type", "application/json");
       var response = await client.ExecuteTaskAsync(request);
     }

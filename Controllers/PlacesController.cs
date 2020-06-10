@@ -19,6 +19,15 @@ namespace TravelClient.Controllers
     public IActionResult Details(int id)
     {
       var thisPlace = Place.GetDetails(id);
+      var ratings = Rating.GetAll();
+      ViewBag.Ratings = new List<Rating>{};
+      foreach (Rating r in ratings) 
+        {
+          if (r.PlaceId == id)
+          {
+            ViewBag.Ratings.Add(r);
+          }
+        }
       return View(thisPlace);
     }  
   }

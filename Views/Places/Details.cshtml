@@ -4,6 +4,15 @@
 
 @model TravelClient.Models.Place;
 
-<h4>@Html.DisplayFor(model => model.City)</h4>
-<h4>@Html.DisplayFor(model => model.Country)</h4>
-<h4>@Html.DisplayFor(model => model.Description)</h4>
+
+  <h4>City: @Html.DisplayFor(model => model.City)</h4>
+  <h4>Country: @Html.DisplayFor(model => model.Country)</h4>
+  <h4>Description: @Html.DisplayFor(model => model.Description)</h4>
+  <h4>Reviews:</h4>
+  <ul>
+  @foreach (Rating r in @ViewBag.Ratings)
+  {
+    <li>Stars: @r.Stars / 10</li>
+    <li>Comments: @r.Comments </li>
+  }
+  </ul>

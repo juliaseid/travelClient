@@ -12,7 +12,7 @@ namespace TravelClient.Models
     public string Country { get; set; }
     public string Description { get; set; }
     public string ImageUrl { get; set; } 
-
+    
     public static List<Place> GetPlaces()
     {
       var apiCallTask = ApiHelper.GetAll();

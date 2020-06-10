@@ -12,9 +12,9 @@ namespace TravelClient.Models
     public int PlaceId { get; set; }
     public int UserId { get; set; }
     public string Comments { get; set; }
-    public static List<Rating> GetRatings()
+    public static List<Rating> GetAll()
     {
-      var apiCallTask = ApiHelper.GetAll();
+      var apiCallTask = ApiHelper.GetAllRatings();
       var result = apiCallTask.Result;
 
       JArray jsonResponse = JsonConvert.DeserializeObject<JArray>(result);
@@ -24,7 +24,7 @@ namespace TravelClient.Models
     }
     public static Rating GetDetails(int id)
     {
-      var apiCallTask = ApiHelper.Get(id);
+      var apiCallTask = ApiHelper.GetRating(id);
       var result = apiCallTask.Result;
 
       JObject jsonResponse = JsonConvert.DeserializeObject<JObject>(result);
@@ -44,7 +44,7 @@ namespace TravelClient.Models
       var apiCallTask = ApiHelper.Put(rating.RatingId, jsonRating);
     }
 
-    public static void Delete(int id)
+    public static void DeleteRating(int id)
     {
       var apiCallTask = ApiHelper.Delete(id);
     }
