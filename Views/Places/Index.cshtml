@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>All Places and Their Reviews:</h1>
+
+<ol>
+@foreach (Place place in Model)
+{
+    <ul>
+        <li>ID: @place.PlaceId</li>
+        <li>City: @place.City</li>
+        <li>Country: @place.Country</li>
+        <li>Description: @place.Description</li>
+        @* <li>Rating: @place.Rating</li> *@
+        @* imageurl *@
+    </ul>
+    <a href="/Places/Details/@(place.PlaceId)"><p>View Details</p></a>
+    <br>
+}
+</ol>
