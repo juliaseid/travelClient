@@ -16,6 +16,14 @@ namespace TravelClient.Controllers
       return View(allPlaces);
     }
 
+    [HttpPost]
+    public IActionResult Index(Place place)
+    {
+      Place.Post(place);
+      return RedirectToAction("Index");
+    }
+
+
     public IActionResult Details(int id)
     {
       var thisPlace = Place.GetDetails(id);
@@ -29,6 +37,29 @@ namespace TravelClient.Controllers
           }
         }
       return View(thisPlace);
-    }  
+    }
+
+    public IActionResult Edit(int id)
+    {
+      var place = Place.GetDetails(id);
+      return View(place);
+    }
+
+    [HttpPost]
+    public IActionResult Details(int id, Place place)
+    {
+      place.PlaceId = id;
+      Place.Put(place);
+      return RedirectToAction("Details", id);
+    }
+
+    public IActionResult Delete(int id)
+    {
+      Place.Delete(id);
+      return RedirectToAction("Index");
+    }
+    
+
+
   }
 }

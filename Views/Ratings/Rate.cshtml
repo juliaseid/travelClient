@@ -1,0 +1,29 @@
+@{
+  Layout = "_Layout";
+}
+
+@model TravelClient.Models.Rating;
+
+<h4>Add a Rating for @ViewBag.Place.City</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(ViewBag => ViewBag.Place.PlaceId)
+@* I have literally no idea if this is going to work *@
+
+    @Html.Label("How many stars (out of 10) would you give this place?")
+    @Html.TextBoxFor(model => model.Stars)
+
+    @Html.LabelFor(model => model.Comments)
+    @Html.TextBoxFor(model => model.Comments)
+
+    <input type="submit" value="Save" />
+}
+
+<ul>
+  @foreach (Rating r in @ViewBag.Ratings)
+  {
+    <li>Stars: @r.Stars / 10</li>
+    <li>Comments: @r.Comments </li>
+  }
+  </ul>
